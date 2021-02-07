@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wufu.music.Dao.SingerManageMapper">
+    <select id="getSingerIdByName" resultType="java.lang.Integer">
+        select singer_id from singer where singer_name=#{singer_name}
+    </select>
+
+    <insert id="insertSingerInfo">
+        insert into singer
+        (singer_name,singer_sex,singer_age,singer_address,singer_introduction)
+        values (#{singer_name},
+                #{singer_sex},
+                #{singer_age},
+                #{singer_address},
+                #{singer_introduction})
+    </insert>
+
+    <update id="updateSingerInfo">
+        update singer
+        set singer_name=#{singer_name},singer_sex=#{singer_sex},singer_age=#{singer_age},
+            singer_address=#{singer_address},singer_introduction=#{singer_introduction}
+        where singer_id=#{singer_id}
+    </update>
+
+    <delete id="deleteSingerInfo">
+        delete from singer
+        where singer_id=#{singer_id}
+    </delete>
+
+    <select id="getAllSinger" resultType="com.wufu.music.Domain.Singer">
+        select * from singer
+    </select>
+
+    <select id="getSingerInfoBySex" resultType="com.wufu.music.Domain.Singer">
+        select * from singer
+        where singer_sex=#{singer_sex}
+    </select>
+
+    <select id="getSingerByName" resultType="com.wufu.music.Domain.Singer">
+        select * from singer
+        where singer_name like #{singer_name}
+    </select>
+</mapper>
